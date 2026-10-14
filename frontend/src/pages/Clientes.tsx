@@ -1,4 +1,4 @@
-﻿
+
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react'
 import '../App.css'
 
@@ -126,7 +126,7 @@ export default function Clientes() {
           : null
 
       if (!lista) {
-        throw new Error('El formato de respuesta de ventas no es vÃ¡lido.')
+        throw new Error('El formato de respuesta de ventas no es válido.')
       }
 
       setVentas(lista as Venta[])
@@ -314,7 +314,7 @@ export default function Clientes() {
       setError(
         errorCapturado instanceof Error
           ? errorCapturado.message
-          : 'OcurriÃ³ un error al guardar.',
+          : 'Ocurrió un error al guardar.',
       )
     } finally {
       setGuardando(false)
@@ -323,7 +323,7 @@ export default function Clientes() {
 
   async function eliminarCliente(cliente: Cliente) {
     const confirmar = window.confirm(
-      `Â¿EstÃ¡s seguro de eliminar al cliente "${cliente.nombre}"?`,
+      `¿Estás seguro de eliminar al cliente "${cliente.nombre}"?`,
     )
 
     if (!confirmar) return
@@ -356,7 +356,7 @@ export default function Clientes() {
       setError(
         errorCapturado instanceof Error
           ? errorCapturado.message
-          : 'OcurriÃ³ un error al eliminar.',
+          : 'Ocurrió un error al eliminar.',
       )
     } finally {
       setEliminandoId(null)
@@ -368,7 +368,7 @@ export default function Clientes() {
       <div className="clientes-hero">
         <div className="clientes-hero-texto">
           <div className="clientes-migas">
-            <span>GestiÃ³n comercial</span>
+            <span>Gestión comercial</span>
             <span className="clientes-migas-separador">/</span>
             <strong>Clientes</strong>
           </div>
@@ -401,7 +401,7 @@ export default function Clientes() {
             <div>
               <h1>Clientes</h1>
               <p>
-                Administra tu cartera y conoce a los clientes que mÃ¡s compran.
+                Administra tu cartera y conoce a los clientes que más compran.
               </p>
             </div>
           </div>
@@ -412,7 +412,7 @@ export default function Clientes() {
           className="clientes-boton-principal clientes-boton-nuevo"
           onClick={abrirNuevoCliente}
         >
-          <span className="clientes-plus">ï¼‹</span>
+          <span className="clientes-plus">＋</span>
           Nuevo cliente
         </button>
       </div>
@@ -445,7 +445,7 @@ export default function Clientes() {
 
           <div className="clientes-indicador-contenido">
             <span>Total de clientes</span>
-            <strong>{cargando && clientes.length === 0 ? 'â€”' : clientes.length}</strong>
+            <strong>{cargando && clientes.length === 0 ? '—' : clientes.length}</strong>
             <small>
               <span className="clientes-punto-verde" />
               Registros encontrados
@@ -488,7 +488,7 @@ export default function Clientes() {
             <strong>
               {clientes.filter((cliente) => cliente.correo || cliente.telefono).length}
             </strong>
-            <small>Con correo o telÃ©fono registrado</small>
+            <small>Con correo o teléfono registrado</small>
           </div>
 
           <div className="clientes-indicador-decoracion">02</div>
@@ -516,7 +516,7 @@ export default function Clientes() {
           <div className="clientes-indicador-contenido">
             <span>Clientes con compras</span>
             <strong>
-              {cargandoVentas ? 'â€”' : clientesConCompras}
+              {cargandoVentas ? '—' : clientesConCompras}
             </strong>
             <small>Con ventas registradas</small>
           </div>
@@ -529,9 +529,9 @@ export default function Clientes() {
         <div className="clientes-ranking-encabezado">
           <div>
             <span className="clientes-ranking-etiqueta">
-              ANÃLISIS COMERCIAL
+              ANÁLISIS COMERCIAL
             </span>
-            <h2>Clientes que mÃ¡s compran</h2>
+            <h2>Clientes que más compran</h2>
             <p>
               Los cinco clientes con mayor monto acumulado de compras.
             </p>
@@ -560,8 +560,8 @@ export default function Clientes() {
           </div>
         ) : !errorVentas && rankingClientes.length === 0 ? (
           <div className="clientes-ranking-vacio">
-            TodavÃ­a no hay ventas asociadas a los clientes. Cuando registres
-            ventas, aquÃ­ aparecerÃ¡n los cinco clientes que mÃ¡s compran.
+            Todavía no hay ventas asociadas a los clientes. Cuando registres
+            ventas, aquí aparecerán los cinco clientes que más compran.
           </div>
         ) : !errorVentas ? (
           <div className="clientes-ranking-grid">
@@ -594,7 +594,7 @@ export default function Clientes() {
             </article>
 
             <article className="clientes-ranking-grafico">
-              <h3>ComparaciÃ³n de compras</h3>
+              <h3>Comparación de compras</h3>
               <p>Importe total acumulado por cliente</p>
 
               <div className="clientes-barras">
@@ -694,9 +694,9 @@ export default function Clientes() {
                   type="button"
                   className="clientes-limpiar-busqueda"
                   onClick={() => setBusqueda('')}
-                  aria-label="Limpiar bÃºsqueda"
+                  aria-label="Limpiar búsqueda"
                 >
-                  Ã—
+                  ×
                 </button>
               )}
             </label>
@@ -731,14 +731,14 @@ export default function Clientes() {
 
         {mensaje && (
           <div className="clientes-alerta exito" role="status">
-            <span>âœ“</span>
+            <span>✓</span>
             {mensaje}
             <button
               type="button"
               onClick={() => setMensaje('')}
               aria-label="Cerrar mensaje"
             >
-              Ã—
+              ×
             </button>
           </div>
         )}
@@ -752,7 +752,7 @@ export default function Clientes() {
               onClick={() => setError('')}
               aria-label="Cerrar mensaje"
             >
-              Ã—
+              ×
             </button>
           </div>
         )}
@@ -763,9 +763,9 @@ export default function Clientes() {
               <tr>
                 <th>CLIENTE</th>
                 <th>DOCUMENTO</th>
-                <th>CORREO ELECTRÃ“NICO</th>
-                <th>TELÃ‰FONO</th>
-                <th>DIRECCIÃ“N</th>
+                <th>CORREO ELECTRÓNICO</th>
+                <th>TELÉFONO</th>
+                <th>DIRECCIÓN</th>
                 <th className="clientes-columna-acciones">ACCIONES</th>
               </tr>
             </thead>
@@ -814,7 +814,7 @@ export default function Clientes() {
                         className="clientes-boton-principal"
                         onClick={abrirNuevoCliente}
                       >
-                        ï¼‹ Registrar cliente
+                        ＋ Registrar cliente
                       </button>
                     )}
                   </td>
@@ -839,7 +839,7 @@ export default function Clientes() {
 
                     <td>
                       <span className="clientes-documento">
-                        {cliente.documento || 'â€”'}
+                        {cliente.documento || '—'}
                       </span>
                     </td>
 
@@ -865,7 +865,7 @@ export default function Clientes() {
                           {cliente.telefono}
                         </a>
                       ) : (
-                        <span className="clientes-sin-dato">Sin telÃ©fono</span>
+                        <span className="clientes-sin-dato">Sin teléfono</span>
                       )}
                     </td>
 
@@ -932,7 +932,7 @@ export default function Clientes() {
               ? 'Consultando registros...'
               : clientes.length === 0
                 ? 'No hay registros'
-                : `Mostrando ${(paginaActual - 1) * POR_PAGINA + 1}â€“${Math.min(
+                : `Mostrando ${(paginaActual - 1) * POR_PAGINA + 1}–${Math.min(
                     paginaActual * POR_PAGINA,
                     clientes.length,
                   )} de ${clientes.length} clientes`}
@@ -944,13 +944,13 @@ export default function Clientes() {
               className="clientes-pagina-boton"
               onClick={() => setPagina((actual) => Math.max(1, actual - 1))}
               disabled={paginaActual === 1 || cargando}
-              aria-label="PÃ¡gina anterior"
+              aria-label="Página anterior"
             >
-              â€¹
+              ‹
             </button>
 
             <span>
-              PÃ¡gina {paginaActual} de {totalPaginas}
+              Página {paginaActual} de {totalPaginas}
             </span>
 
             <button
@@ -960,22 +960,22 @@ export default function Clientes() {
                 setPagina((actual) => Math.min(totalPaginas, actual + 1))
               }
               disabled={paginaActual >= totalPaginas || cargando}
-              aria-label="PÃ¡gina siguiente"
+              aria-label="Página siguiente"
             >
-              â€º
+              ›
             </button>
           </div>
 
           <span className="clientes-pie-estado">
             <span className="clientes-punto-verde" />
-            InformaciÃ³n del directorio
+            Información del directorio
           </span>
         </div>
       </div>
 
       <div className="clientes-pie-pagina">
         <span>SalesIA Enterprise</span>
-        <span>GestiÃ³n comercial Â· Directorio de clientes</span>
+        <span>Gestión comercial · Directorio de clientes</span>
       </div>
 
       {modalAbierto && (
@@ -1025,7 +1025,7 @@ export default function Clientes() {
               </div>
 
               <div className="clientes-modal-titulo">
-                <span className="clientes-etiqueta">GESTIÃ“N DE CONTACTOS</span>
+                <span className="clientes-etiqueta">GESTIÓN DE CONTACTOS</span>
 
                 <h2 id="clientes-modal-titulo">
                   {clienteEditar ? 'Editar cliente' : 'Nuevo cliente'}
@@ -1033,7 +1033,7 @@ export default function Clientes() {
 
                 <p>
                   {clienteEditar
-                    ? 'Actualiza la informaciÃ³n de este contacto.'
+                    ? 'Actualiza la información de este contacto.'
                     : 'Completa los datos para registrar un nuevo contacto.'}
                 </p>
               </div>
@@ -1045,7 +1045,7 @@ export default function Clientes() {
                 disabled={guardando}
                 aria-label="Cerrar formulario"
               >
-                Ã—
+                ×
               </button>
             </div>
 
@@ -1053,8 +1053,8 @@ export default function Clientes() {
               <div className="clientes-form-seccion">
                 <span className="clientes-form-seccion-numero">01</span>
                 <div>
-                  <strong>InformaciÃ³n personal</strong>
-                  <p>IdentificaciÃ³n del cliente</p>
+                  <strong>Información personal</strong>
+                  <p>Identificación del cliente</p>
                 </div>
               </div>
 
@@ -1074,7 +1074,7 @@ export default function Clientes() {
                         nombre: evento.target.value,
                       })
                     }
-                    placeholder="Ej. Juan PÃ©rez"
+                    placeholder="Ej. Juan Pérez"
                     autoFocus
                   />
                 </label>
@@ -1099,14 +1099,14 @@ export default function Clientes() {
               <div className="clientes-form-seccion clientes-form-seccion-contacto">
                 <span className="clientes-form-seccion-numero">02</span>
                 <div>
-                  <strong>InformaciÃ³n de contacto</strong>
-                  <p>Medios de comunicaciÃ³n y ubicaciÃ³n</p>
+                  <strong>Información de contacto</strong>
+                  <p>Medios de comunicación y ubicación</p>
                 </div>
               </div>
 
               <div className="clientes-form-grid">
                 <label className="clientes-campo campo-completo">
-                  <span>Correo electrÃ³nico</span>
+                  <span>Correo electrónico</span>
 
                   <input
                     type="email"
@@ -1123,7 +1123,7 @@ export default function Clientes() {
                 </label>
 
                 <label className="clientes-campo">
-                  <span>TelÃ©fono</span>
+                  <span>Teléfono</span>
 
                   <input
                     type="tel"
@@ -1135,12 +1135,12 @@ export default function Clientes() {
                         telefono: evento.target.value,
                       })
                     }
-                    placeholder="NÃºmero de contacto"
+                    placeholder="Número de contacto"
                   />
                 </label>
 
                 <label className="clientes-campo">
-                  <span>DirecciÃ³n</span>
+                  <span>Dirección</span>
 
                   <input
                     maxLength={250}
@@ -1151,7 +1151,7 @@ export default function Clientes() {
                         direccion: evento.target.value,
                       })
                     }
-                    placeholder="Distrito, ciudad o direcciÃ³n"
+                    placeholder="Distrito, ciudad o dirección"
                   />
                 </label>
               </div>
@@ -1190,7 +1190,7 @@ export default function Clientes() {
                       </>
                     ) : (
                       <>
-                        <span>âœ“</span>
+                        <span>✓</span>
                         {clienteEditar ? 'Guardar cambios' : 'Registrar cliente'}
                       </>
                     )}

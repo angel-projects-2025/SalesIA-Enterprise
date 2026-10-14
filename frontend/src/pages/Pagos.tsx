@@ -1,4 +1,4 @@
-﻿
+
 import { useCallback, useEffect, useMemo, useState } from "react";
 import "./Pagos.css";
 
@@ -44,11 +44,11 @@ function dinero(valor: number | string): string {
 }
 
 function fechaLegible(fecha: string | null): string {
-  if (!fecha) return "â€”";
+  if (!fecha) return "—";
 
   const fechaValida = new Date(fecha);
 
-  if (Number.isNaN(fechaValida.getTime())) return "â€”";
+  if (Number.isNaN(fechaValida.getTime())) return "—";
 
   return fechaValida.toLocaleString("es-PE", {
     dateStyle: "short",
@@ -68,7 +68,7 @@ function mensajeError(detalle: unknown): string {
       .join(" ");
   }
 
-  return "No se pudo completar la operaciÃ³n.";
+  return "No se pudo completar la operación.";
 }
 
 export default function Pagos() {
@@ -276,7 +276,7 @@ export default function Pagos() {
       setError(
         e instanceof Error
           ? e.message
-          : "OcurriÃ³ un error al registrar el pago.",
+          : "Ocurrió un error al registrar el pago.",
       );
     } finally {
       setGuardando(false);
@@ -287,7 +287,7 @@ export default function Pagos() {
     <div className="pagos-page">
       <header className="pagos-header">
         <div>
-          <span className="pagos-eyebrow">GESTIÃ“N FINANCIERA</span>
+          <span className="pagos-eyebrow">GESTIÓN FINANCIERA</span>
           <h1>Pagos</h1>
           <p>Registra abonos y consulta el estado de los cobros.</p>
         </div>
@@ -367,7 +367,7 @@ export default function Pagos() {
 
                 return (
                   <option key={venta.id} value={venta.id}>
-                    Venta #{venta.id} Â· {cliente?.nombre ?? `Cliente #${venta.cliente_id}`} Â· Saldo: {dinero(saldo)}
+                    Venta #{venta.id} · {cliente?.nombre ?? `Cliente #${venta.cliente_id}`} · Saldo: {dinero(saldo)}
                   </option>
                 );
               })}
@@ -408,7 +408,7 @@ export default function Pagos() {
             </label>
 
             <label className="pagos-campo">
-              <span>MÃ©todo de pago *</span>
+              <span>Método de pago *</span>
               <select
                 value={metodoPago}
                 onChange={(e) => setMetodoPago(e.target.value)}
@@ -431,13 +431,13 @@ export default function Pagos() {
               maxLength={100}
               value={referencia}
               onChange={(e) => setReferencia(e.target.value)}
-              placeholder="NÃºmero de operaciÃ³n o comprobante"
+              placeholder="Número de operación o comprobante"
               disabled={guardando}
             />
           </label>
 
           <div className="pagos-formulario-pie">
-            <p>El pago se guardarÃ¡ en la base de datos del sistema.</p>
+            <p>El pago se guardará en la base de datos del sistema.</p>
             <button
               type="submit"
               className="pagos-btn-principal"
@@ -473,7 +473,7 @@ export default function Pagos() {
                 <th>Venta</th>
                 <th>Cliente</th>
                 <th>Fecha</th>
-                <th>MÃ©todo</th>
+                <th>Método</th>
                 <th>Referencia</th>
                 <th>Monto</th>
                 <th>Estado</th>
@@ -508,7 +508,7 @@ export default function Pagos() {
                       <td>
                         {pago.cliente ??
                           cliente?.nombre ??
-                          `Cliente #${venta?.cliente_id ?? "â€”"}`}
+                          `Cliente #${venta?.cliente_id ?? "—"}`}
                       </td>
                       <td>{fechaLegible(pago.fecha_pago)}</td>
                       <td>
@@ -516,7 +516,7 @@ export default function Pagos() {
                           {pago.metodo_pago}
                         </span>
                       </td>
-                      <td>{pago.referencia || "â€”"}</td>
+                      <td>{pago.referencia || "—"}</td>
                       <td className="pagos-monto">
                         {dinero(pago.monto)}
                       </td>

@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./Reportes.css";
 
 const API = "https://salesia-enterprise-api.vercel.app/api";
@@ -32,7 +32,7 @@ function obtenerLista(data: unknown): Registro[] {
 
 function texto(valor: unknown): string {
   return valor === null || valor === undefined || valor === ""
-    ? "â€”"
+    ? "—"
     : String(valor);
 }
 
@@ -69,7 +69,7 @@ function fechaRegistro(registro: Registro): string {
 }
 
 function fechaVisible(valor: unknown): string {
-  if (!valor) return "â€”";
+  if (!valor) return "—";
 
   const fecha = new Date(String(valor));
   return Number.isNaN(fecha.getTime())
@@ -144,7 +144,7 @@ function clasificarEstado(registro: Registro): string {
     return "Pendientes";
   }
 
-  return estado && estado !== "â€”" ? "Otros estados" : "Sin estado";
+  return estado && estado !== "—" ? "Otros estados" : "Sin estado";
 }
 
 function nombreMes(clave: string): string {
@@ -212,7 +212,7 @@ export default function Reportes() {
         !resProductos.correcta
       ) {
         throw new Error(
-          "No se pudieron cargar los reportes. Verifica que el backend estÃ© iniciado."
+          "No se pudieron cargar los reportes. Verifica que el backend esté iniciado."
         );
       }
 
@@ -223,14 +223,14 @@ export default function Reportes() {
 
       if (respuestas.some((respuesta) => !respuesta.correcta)) {
         setError(
-          "Algunos datos no pudieron cargarse. Verifica las rutas en la documentaciÃ³n de la API."
+          "Algunos datos no pudieron cargarse. Verifica las rutas en la documentación de la API."
         );
       }
     } catch (err) {
       setError(
         err instanceof Error
           ? err.message
-          : "OcurriÃ³ un error al cargar los reportes."
+          : "Ocurrió un error al cargar los reportes."
       );
     } finally {
       setCargando(false);
@@ -431,7 +431,7 @@ export default function Reportes() {
 
   const titulo =
     tipo === "ventas"
-      ? "AnÃ¡lisis de ventas"
+      ? "Análisis de ventas"
       : tipo === "pagos"
         ? "Reporte de pagos"
         : "Reporte de inventario";
@@ -454,10 +454,10 @@ export default function Reportes() {
     <main className="reportes-page">
       <header className="reportes-header">
         <div>
-          <span className="reportes-eyebrow">GESTIÃ“N EMPRESARIAL</span>
+          <span className="reportes-eyebrow">GESTIÓN EMPRESARIAL</span>
           <h1>Reportes</h1>
           <p>
-            Analiza el rendimiento comercial y consulta la informaciÃ³n
+            Analiza el rendimiento comercial y consulta la información
             de tu empresa.
           </p>
         </div>
@@ -467,13 +467,13 @@ export default function Reportes() {
           onClick={() => window.print()}
           disabled={cargando || filtrados.length === 0}
         >
-          <span>â–¤</span> Imprimir / Guardar PDF
+          <span>▤</span> Imprimir / Guardar PDF
         </button>
       </header>
 
       <section className="reportes-resumen">
         <article className="reporte-card">
-          <div className="reporte-card-icon ventas-icon">â–¥</div>
+          <div className="reporte-card-icon ventas-icon">▥</div>
           <div>
             <span>Total de ventas</span>
             <strong>{ventas.length}</strong>
@@ -491,7 +491,7 @@ export default function Reportes() {
         </article>
 
         <article className="reporte-card">
-          <div className="reporte-card-icon productos-icon">â–¦</div>
+          <div className="reporte-card-icon productos-icon">▦</div>
           <div>
             <span>Productos</span>
             <strong>{productos.length}</strong>
@@ -519,7 +519,7 @@ export default function Reportes() {
         <div className="reportes-panel-heading">
           <div>
             <h2>Centro de reportes</h2>
-            <p>Selecciona la informaciÃ³n que deseas analizar.</p>
+            <p>Selecciona la información que deseas analizar.</p>
           </div>
 
           <button
@@ -527,7 +527,7 @@ export default function Reportes() {
             onClick={() => void cargarReportes()}
             disabled={cargando}
           >
-            â†» Actualizar
+            ↻ Actualizar
           </button>
         </div>
 
@@ -536,7 +536,7 @@ export default function Reportes() {
             className={tipo === "ventas" ? "activo" : ""}
             onClick={() => setTipo("ventas")}
           >
-            â–¥ Ventas
+            ▥ Ventas
           </button>
           <button
             className={tipo === "pagos" ? "activo" : ""}
@@ -548,7 +548,7 @@ export default function Reportes() {
             className={tipo === "inventario" ? "activo" : ""}
             onClick={() => setTipo("inventario")}
           >
-            â–¦ Inventario
+            ▦ Inventario
           </button>
         </div>
 
@@ -603,7 +603,7 @@ export default function Reportes() {
         {error && <div className="reportes-alerta">{error}</div>}
 
         {cargando ? (
-          <div className="reportes-cargando">Cargando informaciÃ³n...</div>
+          <div className="reportes-cargando">Cargando información...</div>
         ) : tipo === "ventas" ? (
           <>
             <div className="analisis-encabezado">
@@ -624,16 +624,16 @@ export default function Reportes() {
 
             <div className="analisis-kpis">
               <article className="analisis-kpi">
-                <span className="analisis-kpi-icon azul">â–¥</span>
+                <span className="analisis-kpi-icon azul">▥</span>
                 <div>
                   <small>Ventas registradas</small>
                   <strong>{filtrados.length}</strong>
-                  <span>SegÃºn filtros actuales</span>
+                  <span>Según filtros actuales</span>
                 </div>
               </article>
 
               <article className="analisis-kpi">
-                <span className="analisis-kpi-icon verde">âœ“</span>
+                <span className="analisis-kpi-icon verde">✓</span>
                 <div>
                   <small>Importe completado</small>
                   <strong>{moneda(analisisVentas.importeCompletado)}</strong>
@@ -642,7 +642,7 @@ export default function Reportes() {
               </article>
 
               <article className="analisis-kpi">
-                <span className="analisis-kpi-icon amarillo">â—·</span>
+                <span className="analisis-kpi-icon amarillo">◷</span>
                 <div>
                   <small>Importe pendiente</small>
                   <strong>{moneda(analisisVentas.importePendiente)}</strong>
@@ -672,7 +672,7 @@ export default function Reportes() {
 
                 {analisisVentas.meses.length === 0 ? (
                   <div className="analisis-sin-datos">
-                    No hay fechas vÃ¡lidas para construir el grÃ¡fico.
+                    No hay fechas válidas para construir el gráfico.
                   </div>
                 ) : (
                   <div className="grafico-barras">
@@ -715,7 +715,7 @@ export default function Reportes() {
                 <div className="analisis-panel-titulo">
                   <div>
                     <h3>Estado de las ventas</h3>
-                    <p>DistribuciÃ³n de registros por estado</p>
+                    <p>Distribución de registros por estado</p>
                   </div>
                 </div>
 
@@ -752,7 +752,7 @@ export default function Reportes() {
                                 {estado.nombre}
                               </span>
                               <strong>
-                                {estado.cantidad} Â· {porcentaje.toFixed(0)}%
+                                {estado.cantidad} · {porcentaje.toFixed(0)}%
                               </strong>
                             </div>
                             <div className="estado-progreso-fondo">
@@ -845,11 +845,11 @@ export default function Reportes() {
                 <thead>
                   {tipo === "pagos" && (
                     <tr>
-                      <th>CÃ³digo</th>
+                      <th>Código</th>
                       <th>Cliente</th>
                       <th>Venta</th>
                       <th>Fecha</th>
-                      <th>MÃ©todo</th>
+                      <th>Método</th>
                       <th>Estado</th>
                       <th className="alinear-derecha">Importe</th>
                     </tr>
@@ -857,9 +857,9 @@ export default function Reportes() {
 
                   {tipo === "inventario" && (
                     <tr>
-                      <th>CÃ³digo</th>
+                      <th>Código</th>
                       <th>Producto</th>
-                      <th>CategorÃ­a</th>
+                      <th>Categoría</th>
                       <th className="alinear-derecha">Stock</th>
                       <th className="alinear-derecha">Precio</th>
                       <th className="alinear-derecha">Valor total</th>

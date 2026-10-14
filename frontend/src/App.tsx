@@ -1,4 +1,4 @@
-﻿import {
+import {
   useState,
   useEffect,
   useCallback,
@@ -51,14 +51,14 @@ const API_URL = 'https://salesia-enterprise-api.vercel.app/api'
 const EVENTO_DATOS_ACTUALIZADOS = 'salesia:datos-actualizados'
 
 const menuItems = [
-  { name: 'Dashboard', icon: 'â–¦' },
-  { name: 'Clientes', icon: 'â™™' },
-  { name: 'Productos', icon: 'â—ˆ' },
-  { name: 'Inventario', icon: 'â–¤' },
-  { name: 'Ventas', icon: 'â†—' },
-  { name: 'Pagos', icon: 'ï¼„' },
-  { name: 'Analytics', icon: 'âŒ' },
-  { name: 'Reportes', icon: 'â–§' },
+  { name: 'Dashboard', icon: '▦' },
+  { name: 'Clientes', icon: '♙' },
+  { name: 'Productos', icon: '◈' },
+  { name: 'Inventario', icon: '▤' },
+  { name: 'Ventas', icon: '↗' },
+  { name: 'Pagos', icon: '＄' },
+  { name: 'Analytics', icon: '⌁' },
+  { name: 'Reportes', icon: '▧' },
 ]
 
 function obtenerRol(rolId: number) {
@@ -216,7 +216,7 @@ function App() {
     } catch {
       if (montado.current) {
         setErrorDashboard(
-          'No se pudieron obtener los indicadores. Comprueba que el backend estÃ© funcionando.',
+          'No se pudieron obtener los indicadores. Comprueba que el backend esté funcionando.',
         )
       }
     } finally {
@@ -276,7 +276,7 @@ function App() {
     } catch {
       if (montado.current) {
         setErrorVentas(
-          'No se pudo cargar la actividad de ventas. Comprueba que el backend estÃ© funcionando.',
+          'No se pudo cargar la actividad de ventas. Comprueba que el backend esté funcionando.',
         )
       }
     } finally {
@@ -362,10 +362,10 @@ function App() {
       if (!respuesta.ok) {
         setError(
           respuesta.status === 401
-            ? 'El correo o la contraseÃ±a son incorrectos.'
+            ? 'El correo o la contraseña son incorrectos.'
             : typeof datos.detail === 'string'
               ? datos.detail
-              : 'No se pudo iniciar sesiÃ³n.',
+              : 'No se pudo iniciar sesión.',
         )
         return
       }
@@ -380,7 +380,7 @@ function App() {
         typeof usuarioAutenticado.rol_id !== 'number'
       ) {
         setError(
-          'El servidor respondiÃ³, pero los datos del usuario no tienen el formato esperado.',
+          'El servidor respondió, pero los datos del usuario no tienen el formato esperado.',
         )
         return
       }
@@ -400,7 +400,7 @@ function App() {
       setErrorVentas('')
     } catch {
       setError(
-        'No se pudo conectar con el servidor. Comprueba que FastAPI estÃ© ejecutÃ¡ndose.',
+        'No se pudo conectar con el servidor. Comprueba que FastAPI esté ejecutándose.',
       )
     } finally {
       setCargando(false)
@@ -435,13 +435,13 @@ function App() {
           </div>
 
           <div className="login-heading">
-            <p className="eyebrow">SISTEMA DE GESTIÃ“N EMPRESARIAL</p>
+            <p className="eyebrow">SISTEMA DE GESTIÓN EMPRESARIAL</p>
             <h2>Bienvenido de nuevo</h2>
             <p>Ingresa tus credenciales para acceder a tu cuenta.</p>
           </div>
 
           <form className="login-form" onSubmit={iniciarSesion}>
-            <label htmlFor="correo">Correo electrÃ³nico</label>
+            <label htmlFor="correo">Correo electrónico</label>
             <input
               id="correo"
               type="email"
@@ -452,13 +452,13 @@ function App() {
               required
             />
 
-            <label htmlFor="password">ContraseÃ±a</label>
+            <label htmlFor="password">Contraseña</label>
             <div className="password-field">
               <input
                 id="password"
                 type={mostrarPassword ? 'text' : 'password'}
                 autoComplete="current-password"
-                placeholder="Ingresa tu contraseÃ±a"
+                placeholder="Ingresa tu contraseña"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
                 required
@@ -468,7 +468,7 @@ function App() {
                 className="password-toggle"
                 onClick={() => setMostrarPassword(!mostrarPassword)}
                 aria-label={
-                  mostrarPassword ? 'Ocultar contraseÃ±a' : 'Mostrar contraseÃ±a'
+                  mostrarPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'
                 }
               >
                 {mostrarPassword ? 'Ocultar' : 'Mostrar'}
@@ -486,12 +486,12 @@ function App() {
               className="login-submit"
               disabled={cargando}
             >
-              {cargando ? 'Verificando...' : 'Iniciar sesiÃ³n â†’'}
+              {cargando ? 'Verificando...' : 'Iniciar sesión →'}
             </button>
           </form>
 
           <div className="login-footer">
-            <span>Â© 2026 SalesIA Enterprise</span>
+            <span>© 2026 SalesIA Enterprise</span>
             <span>Acceso al sistema ERP</span>
           </div>
         </section>
@@ -576,7 +576,7 @@ function App() {
           </div>
         </div>
 
-        <div className="menu-label">MENÃš PRINCIPAL</div>
+        <div className="menu-label">MENÚ PRINCIPAL</div>
 
         <nav className="menu">
           {menuItems.map((item) => (
@@ -596,11 +596,11 @@ function App() {
 
         <div className="sidebar-bottom">
           <div className="help-card">
-            <div className="help-icon">âœ¦</div>
+            <div className="help-icon">✦</div>
             <strong>Analytics inteligente</strong>
             <p>Convierte tus datos en mejores decisiones.</p>
             <button onClick={() => setActive('Analytics')}>
-              Explorar Analytics â†’
+              Explorar Analytics →
             </button>
           </div>
 
@@ -613,10 +613,10 @@ function App() {
             <button
               className="user-dots"
               onClick={cerrarSesion}
-              title="Cerrar sesiÃ³n"
-              aria-label="Cerrar sesiÃ³n"
+              title="Cerrar sesión"
+              aria-label="Cerrar sesión"
             >
-              â†ª
+              ↪
             </button>
           </div>
         </div>
@@ -634,14 +634,14 @@ function App() {
             </span>
             <button
               className="notification-button"
-              aria-label="Actualizar informaciÃ³n"
+              aria-label="Actualizar información"
               onClick={() => {
                 void cargarDashboard()
                 void cargarActividadComercial()
               }}
-              title="Actualizar informaciÃ³n"
+              title="Actualizar información"
             >
-              â™§
+              ♧
             </button>
             <div className="avatar small-avatar">{iniciales}</div>
           </div>
@@ -668,7 +668,7 @@ function App() {
               <div className="dashboard-hero">
                 <div className="dashboard-hero-contenido">
                   <div className="dashboard-migas">
-                    <span>GestiÃ³n empresarial</span>
+                    <span>Gestión empresarial</span>
                     <span>/</span>
                     <strong>Dashboard</strong>
                   </div>
@@ -686,13 +686,13 @@ function App() {
                   className="dashboard-boton-nueva-venta"
                   onClick={() => setActive('Ventas')}
                 >
-                  <span>ï¼‹</span>
+                  <span>＋</span>
                   Nueva venta
                 </button>
               </div>
 
               <div className="date-strip">
-                <span>â–¦</span>
+                <span>▦</span>
                 Resumen general
               </div>
 
@@ -713,14 +713,14 @@ function App() {
                 <article className="stat-card">
                   <div className="stat-top">
                     <span>Clientes registrados</span>
-                    <div className="stat-icon purple">â™™</div>
+                    <div className="stat-icon purple">♙</div>
                   </div>
                   <h2>
                     {dashboard
                       ? dashboard.total_clientes
                       : cargandoDashboard
                         ? '...'
-                        : 'â€”'}
+                        : '—'}
                   </h2>
                   <p className="stat-foot">
                     <span>Clientes en tu cartera</span>
@@ -734,18 +734,18 @@ function App() {
                 <article className="stat-card">
                   <div className="stat-top">
                     <span>Productos activos</span>
-                    <div className="stat-icon orange">â—ˆ</div>
+                    <div className="stat-icon orange">◈</div>
                   </div>
                   <h2>
                     {dashboard
                       ? dashboard.productos_activos
                       : cargandoDashboard
                         ? '...'
-                        : 'â€”'}
+                        : '—'}
                   </h2>
                   <p className="stat-foot">
                     <span>
-                      Total de productos: {dashboard?.total_productos ?? 'â€”'}
+                      Total de productos: {dashboard?.total_productos ?? '—'}
                     </span>
                   </p>
                   <div className="mini-bars orange-bars">
@@ -757,14 +757,14 @@ function App() {
                 <article className="stat-card">
                   <div className="stat-top">
                     <span>Unidades en inventario</span>
-                    <div className="stat-icon blue">â–¤</div>
+                    <div className="stat-icon blue">▤</div>
                   </div>
                   <h2>
                     {dashboard
                       ? dashboard.unidades_stock
                       : cargandoDashboard
                         ? '...'
-                        : 'â€”'}
+                        : '—'}
                   </h2>
                   <p className="stat-foot">
                     <span>Unidades disponibles registradas</span>
@@ -778,17 +778,17 @@ function App() {
                 <article className="stat-card">
                   <div className="stat-top">
                     <span>Valor del inventario</span>
-                    <div className="stat-icon green">ï¼„</div>
+                    <div className="stat-icon green">＄</div>
                   </div>
                   <h2>
                     {dashboard
                       ? formatoMoneda(dashboard.valor_inventario)
                       : cargandoDashboard
                         ? '...'
-                        : 'â€”'}
+                        : '—'}
                   </h2>
                   <p className="stat-foot">
-                    <span>SegÃºn precio y stock</span>
+                    <span>Según precio y stock</span>
                   </p>
                   <div className="mini-bars green-bars">
                     <i /><i /><i /><i />
@@ -803,7 +803,7 @@ function App() {
                     <div>
                       <h3>Estado del inventario</h3>
                       <p>
-                        DistribuciÃ³n de productos segÃºn su disponibilidad
+                        Distribución de productos según su disponibilidad
                       </p>
                     </div>
                     <span className="chart-tag">INVENTARIO</span>
@@ -812,7 +812,7 @@ function App() {
                   {!dashboard ? (
                     <div className="chart-empty">
                       {cargandoDashboard
-                        ? 'Cargando informaciÃ³n del inventario...'
+                        ? 'Cargando información del inventario...'
                         : 'No hay datos disponibles para mostrar.'}
                     </div>
                   ) : (
@@ -849,7 +849,7 @@ function App() {
                           <span className="legend-dot dot-green" />
                           <div>
                             <strong>Stock normal</strong>
-                            <span>MÃ¡s de 5 unidades</span>
+                            <span>Más de 5 unidades</span>
                           </div>
                           <b>{productosDisponibles}</b>
                         </div>
@@ -867,7 +867,7 @@ function App() {
                           <span className="legend-dot dot-red" />
                           <div>
                             <strong>Sin stock</strong>
-                            <span>Necesitan reposiciÃ³n</span>
+                            <span>Necesitan reposición</span>
                           </div>
                           <b>{dashboard.productos_sin_stock}</b>
                         </div>
@@ -877,8 +877,8 @@ function App() {
 
                   {dashboard && (
                     <div className="chart-note">
-                      <span>â“˜</span>
-                      La distribuciÃ³n se calcula con los indicadores recibidos
+                      <span>ⓘ</span>
+                      La distribución se calcula con los indicadores recibidos
                       del backend.
                     </div>
                   )}
@@ -903,7 +903,7 @@ function App() {
                     <div className="database-chart">
                       <div className="database-metric">
                         <div className="database-metric-heading">
-                          <span className="database-icon purple">â™™</span>
+                          <span className="database-icon purple">♙</span>
                           <span>Clientes registrados</span>
                           <strong>{dashboard.total_clientes}</strong>
                         </div>
@@ -920,7 +920,7 @@ function App() {
 
                       <div className="database-metric">
                         <div className="database-metric-heading">
-                          <span className="database-icon blue">â—ˆ</span>
+                          <span className="database-icon blue">◈</span>
                           <span>Productos registrados</span>
                           <strong>{dashboard.total_productos}</strong>
                         </div>
@@ -958,9 +958,9 @@ function App() {
               <section className="panel recent-sales-panel">
                 <div className="panel-heading">
                   <div>
-                    <h3>Ãšltimas ventas</h3>
+                    <h3>Últimas ventas</h3>
                     <p>
-                      Consulta las operaciones comerciales mÃ¡s recientes
+                      Consulta las operaciones comerciales más recientes
                     </p>
                   </div>
                   <button
@@ -968,7 +968,7 @@ function App() {
                     className="text-button"
                     onClick={() => setActive('Ventas')}
                   >
-                    Ver todas â†’
+                    Ver todas →
                   </button>
                 </div>
 
@@ -985,21 +985,21 @@ function App() {
                   </div>
                 ) : cargandoVentas && ventasRecientes.length === 0 ? (
                   <div className="chart-empty">
-                    Cargando las Ãºltimas ventas...
+                    Cargando las últimas ventas...
                   </div>
                 ) : ventasRecientes.length === 0 ? (
                   <div className="chart-empty">
-                    TodavÃ­a no hay ventas registradas para mostrar.
+                    Todavía no hay ventas registradas para mostrar.
                   </div>
                 ) : (
                   <div className="recent-sales-list">
                     {ventasRecientes.map((venta) => (
                       <div className="recent-sale-row" key={venta.id}>
-                        <div className="recent-sale-icon">â†—</div>
+                        <div className="recent-sale-icon">↗</div>
                         <div className="recent-sale-info">
                           <strong>{nombreClienteVenta(venta)}</strong>
                           <span>
-                            Venta #{venta.id} Â· {formatoFecha(venta.created_at)}
+                            Venta #{venta.id} · {formatoFecha(venta.created_at)}
                           </span>
                         </div>
                         <div className="recent-sale-total">
@@ -1013,33 +1013,33 @@ function App() {
               </section>
 
               <section className="insight-banner">
-                <div className="insight-symbol">âœ¦</div>
+                <div className="insight-symbol">✦</div>
                 <div>
                   <strong>Potencia tus decisiones con Analytics</strong>
                   <p>
                     Analiza tus datos comerciales y explora los indicadores
-                    estadÃ­sticos de SalesIA Enterprise.
+                    estadísticos de SalesIA Enterprise.
                   </p>
                 </div>
                 <button onClick={() => setActive('Analytics')}>
-                  Ir a Analytics <span>â†’</span>
+                  Ir a Analytics <span>→</span>
                 </button>
               </section>
 
               <footer className="page-footer">
-                <span>Â© 2026 SalesIA Enterprise</span>
-                <span>ERP Â· GestiÃ³n empresarial inteligente</span>
+                <span>© 2026 SalesIA Enterprise</span>
+                <span>ERP · Gestión empresarial inteligente</span>
               </footer>
             </>
           ) : (
             <div className="welcome-row">
               <div>
                 <p className="eyebrow">
-                  PANEL DE CONTROL Â· {rol.toUpperCase()}
+                  PANEL DE CONTROL · {rol.toUpperCase()}
                 </p>
                 <h1>{active}</h1>
                 <p className="subtitle">
-                  El mÃ³dulo de {active.toLowerCase()} estarÃ¡ disponible
+                  El módulo de {active.toLowerCase()} estará disponible
                   cuando implementemos sus funciones.
                 </p>
               </div>

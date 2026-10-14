@@ -1,4 +1,4 @@
-﻿import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react'
+import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react'
 import '../App.css'
 
 interface Categoria {
@@ -45,7 +45,7 @@ async function comprobarRespuesta<T>(respuesta: Response): Promise<T> {
     throw new Error(
       typeof mensaje === 'string'
         ? mensaje
-        : 'No se pudo completar la operaciÃ³n.',
+        : 'No se pudo completar la operación.',
     )
   }
 
@@ -210,7 +210,7 @@ export default function Productos() {
       !Number.isFinite(precio) ||
       precio < 0
     ) {
-      setError('Ingresa un precio vÃ¡lido igual o mayor a cero.')
+      setError('Ingresa un precio válido igual o mayor a cero.')
       return
     }
 
@@ -219,7 +219,7 @@ export default function Productos() {
       !Number.isInteger(stock) ||
       stock < 0
     ) {
-      setError('El stock debe ser un nÃºmero entero igual o mayor a cero.')
+      setError('El stock debe ser un número entero igual o mayor a cero.')
       return
     }
 
@@ -227,7 +227,7 @@ export default function Productos() {
       formulario.categoria_id &&
       !categorias.some((c) => c.id === Number(formulario.categoria_id))
     ) {
-      setError('Selecciona una categorÃ­a vÃ¡lida.')
+      setError('Selecciona una categoría válida.')
       return
     }
 
@@ -276,7 +276,7 @@ export default function Productos() {
 
   const eliminarProducto = async (producto: Producto) => {
     const confirmar = window.confirm(
-      `Â¿Seguro que deseas eliminar "${producto.nombre}"?`,
+      `¿Seguro que deseas eliminar "${producto.nombre}"?`,
     )
 
     if (!confirmar) return
@@ -304,33 +304,33 @@ export default function Productos() {
     <section className="productos-page">
       <header className="productos-header">
         <div>
-          <span className="productos-eyebrow">GESTIÃ“N COMERCIAL</span>
+          <span className="productos-eyebrow">GESTIÓN COMERCIAL</span>
           <h1>Productos</h1>
-          <p>Administra tu catÃ¡logo, precios y existencias.</p>
+          <p>Administra tu catálogo, precios y existencias.</p>
         </div>
 
         <button className="productos-btn-primary" onClick={abrirNuevo}>
-          <span>ï¼‹</span> Nuevo producto
+          <span>＋</span> Nuevo producto
         </button>
       </header>
 
       {error && (
         <div className="productos-alert productos-alert-error" role="alert">
           <span>{error}</span>
-          <button onClick={() => setError('')} aria-label="Cerrar error">Ã—</button>
+          <button onClick={() => setError('')} aria-label="Cerrar error">×</button>
         </div>
       )}
 
       {mensaje && (
         <div className="productos-alert productos-alert-success" role="status">
           <span>{mensaje}</span>
-          <button onClick={() => setMensaje('')} aria-label="Cerrar mensaje">Ã—</button>
+          <button onClick={() => setMensaje('')} aria-label="Cerrar mensaje">×</button>
         </div>
       )}
 
       <div className="productos-metricas">
         <article className="productos-metrica">
-          <span className="productos-metrica-icono">â–¦</span>
+          <span className="productos-metrica-icono">▦</span>
           <div>
             <span>Total de productos</span>
             <strong>{productos.length}</strong>
@@ -338,7 +338,7 @@ export default function Productos() {
         </article>
 
         <article className="productos-metrica">
-          <span className="productos-metrica-icono verde">âœ“</span>
+          <span className="productos-metrica-icono verde">✓</span>
           <div>
             <span>Productos activos</span>
             <strong>{activos}</strong>
@@ -346,7 +346,7 @@ export default function Productos() {
         </article>
 
         <article className="productos-metrica">
-          <span className="productos-metrica-icono morado">â–¤</span>
+          <span className="productos-metrica-icono morado">▤</span>
           <div>
             <span>Unidades en stock</span>
             <strong>{unidades.toLocaleString('es-PE')}</strong>
@@ -366,7 +366,7 @@ export default function Productos() {
         <section className="productos-panel productos-catalogo">
           <div className="productos-panel-header">
             <div>
-              <h2>CatÃ¡logo de productos</h2>
+              <h2>Catálogo de productos</h2>
               <p>Consulta y administra los productos registrados.</p>
             </div>
 
@@ -375,13 +375,13 @@ export default function Productos() {
               onClick={() => void cargarDatos()}
               disabled={cargando}
             >
-              â†» Actualizar
+              ↻ Actualizar
             </button>
           </div>
 
           <div className="productos-filtros">
             <label className="productos-buscador">
-              <span>âŒ•</span>
+              <span>⌕</span>
               <input
                 value={busqueda}
                 onChange={(e) => {
@@ -404,24 +404,24 @@ export default function Productos() {
               <option value="todos">Todos los productos</option>
               <option value="activos">Activos</option>
               <option value="inactivos">Inactivos</option>
-              <option value="stock-bajo">Stock bajo (0â€“5)</option>
+              <option value="stock-bajo">Stock bajo (0–5)</option>
             </select>
           </div>
 
           <div className="productos-resultados">
             {productosFiltrados.length} resultado(s)
-            <span> Â· MÃ¡ximo {POR_PAGINA} por pÃ¡gina</span>
+            <span> · Máximo {POR_PAGINA} por página</span>
           </div>
 
           {cargando ? (
             <div className="productos-vacio">Cargando productos...</div>
           ) : productosFiltrados.length === 0 ? (
             <div className="productos-vacio">
-              <span>â–¦</span>
+              <span>▦</span>
               <h3>No se encontraron productos</h3>
               <p>
                 {busqueda || filtroEstado !== 'todos'
-                  ? 'Prueba cambiando la bÃºsqueda o los filtros.'
+                  ? 'Prueba cambiando la búsqueda o los filtros.'
                   : 'Registra tu primer producto para comenzar.'}
               </p>
               {!busqueda && filtroEstado === 'todos' && (
@@ -459,7 +459,7 @@ export default function Productos() {
                               <div>
                                 <strong>{producto.nombre}</strong>
                                 <small>
-                                  {categoria?.nombre ?? 'Sin categorÃ­a'}
+                                  {categoria?.nombre ?? 'Sin categoría'}
                                 </small>
                               </div>
                             </div>
@@ -518,7 +518,7 @@ export default function Productos() {
                 <span>
                   Mostrando{' '}
                   {Math.min((pagina - 1) * POR_PAGINA + 1, productosFiltrados.length)}
-                  â€“{Math.min(pagina * POR_PAGINA, productosFiltrados.length)} de{' '}
+                  –{Math.min(pagina * POR_PAGINA, productosFiltrados.length)} de{' '}
                   {productosFiltrados.length}
                 </span>
                 <div>
@@ -526,9 +526,9 @@ export default function Productos() {
                     className="productos-pagina-btn"
                     disabled={pagina === 1}
                     onClick={() => setPagina((p) => Math.max(1, p - 1))}
-                    aria-label="PÃ¡gina anterior"
+                    aria-label="Página anterior"
                   >
-                    â€¹
+                    ‹
                   </button>
                   <span className="productos-pagina-numero">
                     {pagina} / {totalPaginas}
@@ -537,9 +537,9 @@ export default function Productos() {
                     className="productos-pagina-btn"
                     disabled={pagina === totalPaginas}
                     onClick={() => setPagina((p) => Math.min(totalPaginas, p + 1))}
-                    aria-label="PÃ¡gina siguiente"
+                    aria-label="Página siguiente"
                   >
-                    â€º
+                    ›
                   </button>
                 </div>
               </footer>
@@ -552,14 +552,14 @@ export default function Productos() {
             <div className="productos-panel-header">
               <div>
                 <h2>Stock por producto</h2>
-                <p>Los 5 productos con mÃ¡s unidades.</p>
+                <p>Los 5 productos con más unidades.</p>
               </div>
-              <span className="productos-grafico-icono">â–¥</span>
+              <span className="productos-grafico-icono">▥</span>
             </div>
 
             {datosGrafico.length === 0 ? (
               <div className="productos-grafico-vacio">
-                TodavÃ­a no hay datos para mostrar.
+                Todavía no hay datos para mostrar.
               </div>
             ) : (
               <div className="productos-barras">
@@ -593,7 +593,7 @@ export default function Productos() {
             <div className="productos-panel-header">
               <div>
                 <h2>Estado del inventario</h2>
-                <p>Productos que requieren atenciÃ³n.</p>
+                <p>Productos que requieren atención.</p>
               </div>
             </div>
 
@@ -606,7 +606,7 @@ export default function Productos() {
                 </div>
               </div>
               <div className="productos-resumen-item">
-                <span className="productos-resumen-icono naranja">â†“</span>
+                <span className="productos-resumen-icono naranja">↓</span>
                 <div>
                   <strong>{stockBajo.length}</strong>
                   <span>Con 5 unidades o menos</span>
@@ -629,13 +629,13 @@ export default function Productos() {
                 ))}
                 {stockBajo.length > 4 && (
                   <p className="productos-mas-alertas">
-                    Y {stockBajo.length - 4} producto(s) mÃ¡s.
+                    Y {stockBajo.length - 4} producto(s) más.
                   </p>
                 )}
               </div>
             ) : (
               <div className="productos-sin-alertas">
-                <span>âœ“</span>
+                <span>✓</span>
                 No hay productos con stock bajo.
               </div>
             )}
@@ -669,11 +669,11 @@ export default function Productos() {
           >
             <header className="productos-modal-header">
               <div>
-                <span className="productos-eyebrow">CATÃLOGO COMERCIAL</span>
+                <span className="productos-eyebrow">CATÁLOGO COMERCIAL</span>
                 <h2 id="productos-modal-titulo">
                   {productoEditar ? 'Editar producto' : 'Nuevo producto'}
                 </h2>
-                <p>Completa la informaciÃ³n del producto.</p>
+                <p>Completa la información del producto.</p>
               </div>
               <button
                 type="button"
@@ -685,7 +685,7 @@ export default function Productos() {
                 disabled={guardando}
                 aria-label="Cerrar formulario"
               >
-                Ã—
+                ×
               </button>
             </header>
 
@@ -701,20 +701,20 @@ export default function Productos() {
                 <input
                   value={formulario.nombre}
                   onChange={(e) => actualizarCampo('nombre', e.target.value)}
-                  placeholder="Ej. Teclado inalÃ¡mbrico"
+                  placeholder="Ej. Teclado inalámbrico"
                   maxLength={150}
                   required
                 />
               </label>
 
               <label>
-                DescripciÃ³n
+                Descripción
                 <textarea
                   value={formulario.descripcion}
                   onChange={(e) =>
                     actualizarCampo('descripcion', e.target.value)
                   }
-                  placeholder="DescripciÃ³n del producto"
+                  placeholder="Descripción del producto"
                   rows={3}
                 />
               </label>
@@ -747,14 +747,14 @@ export default function Productos() {
               </div>
 
               <label>
-                CategorÃ­a
+                Categoría
                 <select
                   value={formulario.categoria_id}
                   onChange={(e) =>
                     actualizarCampo('categoria_id', e.target.value)
                   }
                 >
-                  <option value="">Sin categorÃ­a</option>
+                  <option value="">Sin categoría</option>
                   {categorias.map((categoria) => (
                     <option key={categoria.id} value={categoria.id}>
                       {categoria.nombre}
