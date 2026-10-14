@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type FormEvent } from 'react'
+﻿import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import '../App.css'
 import './Inventario.css'
 
@@ -27,7 +27,7 @@ interface Movimiento {
   created_at: string
 }
 
-const API = 'http://127.0.0.1:8000/api'
+const API = 'https://salesia-enterprise-api.vercel.app/api'
 const EVENTO_DATOS_ACTUALIZADOS = 'salesia:datos-actualizados'
 
 async function comprobarRespuesta<T>(respuesta: Response): Promise<T> {
@@ -36,7 +36,7 @@ async function comprobarRespuesta<T>(respuesta: Response): Promise<T> {
     throw new Error(
       typeof error?.detail === 'string'
         ? error.detail
-        : 'No se pudo completar la operación.',
+        : 'No se pudo completar la operaciÃ³n.',
     )
   }
 
@@ -170,7 +170,7 @@ export default function Inventario() {
     const cantidadNumero = Number(cantidad)
 
     if (!Number.isInteger(id) || id <= 0) {
-      setError('Selecciona un producto válido.')
+      setError('Selecciona un producto vÃ¡lido.')
       return
     }
 
@@ -199,7 +199,7 @@ export default function Inventario() {
       await comprobarRespuesta<Movimiento>(respuesta)
 
       setMensaje(
-        `Movimiento de ${tipo} registrado correctamente. El stock se actualizó.`,
+        `Movimiento de ${tipo} registrado correctamente. El stock se actualizÃ³.`,
       )
 
       setCantidad('1')
@@ -223,7 +223,7 @@ export default function Inventario() {
       <header className="clientes-hero inventario-header-pro">
         <div className="clientes-hero-texto">
           <div className="clientes-migas">
-            <span>Gestión de almacén</span>
+            <span>GestiÃ³n de almacÃ©n</span>
             <span className="clientes-migas-separador">/</span>
             <strong>Inventario</strong>
           </div>
@@ -299,7 +299,7 @@ export default function Inventario() {
             onClick={() => setError('')}
             aria-label="Cerrar"
           >
-            ×
+            Ã—
           </button>
         </div>
       )}
@@ -315,7 +315,7 @@ export default function Inventario() {
             onClick={() => setMensaje('')}
             aria-label="Cerrar"
           >
-            ×
+            Ã—
           </button>
         </div>
       )}
@@ -326,20 +326,20 @@ export default function Inventario() {
             titulo: 'Productos registrados',
             valor: productos.length.toLocaleString('es-PE'),
             detalle: 'Productos en el sistema',
-            icono: '▦',
+            icono: 'â–¦',
             color: 'azul',
           },
           {
             titulo: 'Unidades disponibles',
             valor: unidades.toLocaleString('es-PE'),
-            detalle: 'Unidades en almacén',
-            icono: '▤',
+            detalle: 'Unidades en almacÃ©n',
+            icono: 'â–¤',
             color: 'verde',
           },
           {
             titulo: 'Stock bajo',
             valor: stockBajo.toLocaleString('es-PE'),
-            detalle: 'Requieren reposición',
+            detalle: 'Requieren reposiciÃ³n',
             icono: '!',
             color: 'naranja',
           },
@@ -347,7 +347,7 @@ export default function Inventario() {
             titulo: 'Productos agotados',
             valor: agotados.toLocaleString('es-PE'),
             detalle: 'Sin unidades disponibles',
-            icono: '×',
+            icono: 'Ã—',
             color: 'rojo',
           },
           {
@@ -401,7 +401,7 @@ export default function Inventario() {
 
               {activos.map((p) => (
                 <option key={p.id} value={p.id}>
-                  {p.nombre} — Stock: {p.stock}
+                  {p.nombre} â€” Stock: {p.stock}
                 </option>
               ))}
             </select>
@@ -455,8 +455,8 @@ export default function Inventario() {
               {guardando
                 ? 'Registrando...'
                 : tipo === 'entrada'
-                  ? '＋ Registrar entrada'
-                  : '− Registrar salida'}
+                  ? 'ï¼‹ Registrar entrada'
+                  : 'âˆ’ Registrar salida'}
             </button>
           </div>
         </form>
@@ -465,7 +465,7 @@ export default function Inventario() {
       <section className="productos-panel inventario-existencias">
         <div className="productos-panel-header inventario-panel-compacto">
           <div>
-            <span className="inventario-seccion-label">ALMACÉN</span>
+            <span className="inventario-seccion-label">ALMACÃ‰N</span>
             <h2>Existencias actuales</h2>
             <p>Consulta y filtra los productos de tu inventario.</p>
           </div>
@@ -479,7 +479,7 @@ export default function Inventario() {
           <input
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
-            placeholder="⌕  Buscar producto o categoría..."
+            placeholder="âŒ•  Buscar producto o categorÃ­a..."
           />
 
           <select
@@ -498,14 +498,14 @@ export default function Inventario() {
         ) : productosFiltrados.length === 0 ? (
           <div className="productos-vacio">
             <h3>No se encontraron productos</h3>
-            <p>Prueba cambiando la búsqueda o el filtro.</p>
+            <p>Prueba cambiando la bÃºsqueda o el filtro.</p>
           </div>
         ) : (
           <div className="inventario-productos-grid">
             {productosFiltrados.map((p) => {
               const categoria =
                 categorias.find((c) => c.id === p.categoria_id)?.nombre ??
-                'Sin categoría'
+                'Sin categorÃ­a'
 
               const estado =
                 p.stock === 0
@@ -578,7 +578,7 @@ export default function Inventario() {
         <div className="productos-panel-header">
           <div>
             <span className="inventario-seccion-label">
-              ANÁLISIS DE ACTIVIDAD
+              ANÃLISIS DE ACTIVIDAD
             </span>
             <h2>Historial de movimientos</h2>
             <p>Resumen visual de entradas y salidas registradas.</p>
@@ -591,7 +591,7 @@ export default function Inventario() {
 
         <div className="inventario-resumen-movimientos">
           <article className="inventario-resumen-card">
-            <div className="inventario-resumen-icono entrada">↓</div>
+            <div className="inventario-resumen-icono entrada">â†“</div>
             <div>
               <span>Unidades ingresadas</span>
               <strong>{unidadesEntradas.toLocaleString('es-PE')}</strong>
@@ -600,7 +600,7 @@ export default function Inventario() {
           </article>
 
           <article className="inventario-resumen-card">
-            <div className="inventario-resumen-icono salida">↑</div>
+            <div className="inventario-resumen-icono salida">â†‘</div>
             <div>
               <span>Unidades retiradas</span>
               <strong>{unidadesSalidas.toLocaleString('es-PE')}</strong>
@@ -613,8 +613,8 @@ export default function Inventario() {
           <article className="inventario-grafico-card">
             <div className="inventario-grafico-titulo">
               <div>
-                <h3>Distribución de movimientos</h3>
-                <p>Comparación por tipo de operación</p>
+                <h3>DistribuciÃ³n de movimientos</h3>
+                <p>ComparaciÃ³n por tipo de operaciÃ³n</p>
               </div>
             </div>
 
@@ -682,7 +682,7 @@ export default function Inventario() {
           <article className="inventario-grafico-card">
             <div className="inventario-grafico-titulo">
               <div>
-                <h3>Unidades por operación</h3>
+                <h3>Unidades por operaciÃ³n</h3>
                 <p>Volumen total de unidades movidas</p>
               </div>
             </div>
@@ -733,7 +733,7 @@ export default function Inventario() {
           <div className="inventario-recientes-titulo">
             <div>
               <h3>Movimientos recientes</h3>
-              <p>Últimas 8 operaciones registradas.</p>
+              <p>Ãšltimas 8 operaciones registradas.</p>
             </div>
           </div>
 
@@ -741,9 +741,9 @@ export default function Inventario() {
             <div className="productos-vacio">Cargando movimientos...</div>
           ) : recientes.length === 0 ? (
             <div className="productos-vacio">
-              <h3>Aún no hay movimientos</h3>
+              <h3>AÃºn no hay movimientos</h3>
               <p>
-                Registra una entrada o salida para ver la actividad aquí.
+                Registra una entrada o salida para ver la actividad aquÃ­.
               </p>
             </div>
           ) : (
@@ -762,7 +762,7 @@ export default function Inventario() {
                         entrada ? 'entrada' : 'salida'
                       }`}
                     >
-                      {entrada ? '↓' : '↑'}
+                      {entrada ? 'â†“' : 'â†‘'}
                     </span>
 
                     <div className="inventario-movimiento-detalle">
@@ -779,11 +779,11 @@ export default function Inventario() {
                           entrada ? 'texto-entrada' : 'texto-salida'
                         }
                       >
-                        {entrada ? '+' : '−'}
+                        {entrada ? '+' : 'âˆ’'}
                         {m.cantidad} unid.
                       </strong>
                       <span>
-                        Stock: {m.stock_anterior} → {m.stock_nuevo}
+                        Stock: {m.stock_anterior} â†’ {m.stock_nuevo}
                       </span>
                     </div>
                   </article>

@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+﻿import { useEffect, useMemo, useState } from "react";
 import "./Ventas.css";
 
-const API = "http://127.0.0.1:8000/api";
+const API = "https://salesia-enterprise-api.vercel.app/api";
 const EVENTO_DATOS_ACTUALIZADOS = "salesia:datos-actualizados";
 const MAX_VENTAS_HISTORIAL = 5;
 
@@ -68,11 +68,11 @@ function dinero(valor: number | string): string {
 }
 
 function fechaLegible(fecha: string | null): string {
-  if (!fecha) return "—";
+  if (!fecha) return "â€”";
 
   const fechaValida = new Date(fecha);
 
-  if (Number.isNaN(fechaValida.getTime())) return "—";
+  if (Number.isNaN(fechaValida.getTime())) return "â€”";
 
   return fechaValida.toLocaleString("es-PE", {
     dateStyle: "medium",
@@ -323,8 +323,8 @@ export default function Ventas() {
       });
   }, [ventas, clientes, busqueda, filtroEstado]);
 
-  // El historial solo muestra las cinco ventas más recientes que coinciden
-  // con la búsqueda y el filtro seleccionados.
+  // El historial solo muestra las cinco ventas mÃ¡s recientes que coinciden
+  // con la bÃºsqueda y el filtro seleccionados.
   const ventasPaginadas = ventasFiltradas.slice(
     0,
     MAX_VENTAS_HISTORIAL,
@@ -402,7 +402,7 @@ export default function Ventas() {
     }
 
     if (!Number.isInteger(unidades) || unidades <= 0) {
-      setError("La cantidad debe ser un número entero mayor que cero.");
+      setError("La cantidad debe ser un nÃºmero entero mayor que cero.");
       return;
     }
 
@@ -559,7 +559,7 @@ export default function Ventas() {
       setError(
         e instanceof Error
           ? e.message
-          : "Ocurrió un error al registrar la venta.",
+          : "OcurriÃ³ un error al registrar la venta.",
       );
     } finally {
       setGuardando(false);
@@ -571,7 +571,7 @@ export default function Ventas() {
       <header className="ventas-header">
         <div className="ventas-header-contenido">
           <div className="ventas-migas">
-            <span>Gestión comercial</span>
+            <span>GestiÃ³n comercial</span>
             <span className="ventas-migas-separador">/</span>
             <strong>Ventas</strong>
           </div>
@@ -596,7 +596,7 @@ export default function Ventas() {
           onClick={() => void cargarDatos()}
           disabled={cargando || guardando}
         >
-          <span className={cargando ? "ventas-girando" : ""}>↻</span>
+          <span className={cargando ? "ventas-girando" : ""}>â†»</span>
           {cargando ? "Actualizando..." : "Actualizar datos"}
         </button>
       </header>
@@ -606,28 +606,28 @@ export default function Ventas() {
           className="ventas-alerta ventas-alerta-error"
           role="alert"
         >
-          <strong>Atención</strong>
+          <strong>AtenciÃ³n</strong>
           <span>{error}</span>
           <button
             type="button"
             onClick={() => setError("")}
             aria-label="Cerrar"
           >
-            ×
+            Ã—
           </button>
         </div>
       )}
 
       {mensaje && (
         <div className="ventas-alerta ventas-alerta-ok" role="status">
-          <strong>Operación completada</strong>
+          <strong>OperaciÃ³n completada</strong>
           <span>{mensaje}</span>
           <button
             type="button"
             onClick={() => setMensaje("")}
             aria-label="Cerrar"
           >
-            ×
+            Ã—
           </button>
         </div>
       )}
@@ -653,7 +653,7 @@ export default function Ventas() {
             <span className="ventas-stat-icono ventas-icono-verde">
               <Icono tipo="dinero" />
             </span>
-            <span className="ventas-stat-etiqueta">RECAUDACIÓN</span>
+            <span className="ventas-stat-etiqueta">RECAUDACIÃ“N</span>
           </div>
 
           <span className="ventas-stat-titulo">Ingresos cobrados</span>
@@ -703,7 +703,7 @@ export default function Ventas() {
           </div>
 
           <div>
-            <span className="ventas-kicker">OPERACIÓN COMERCIAL</span>
+            <span className="ventas-kicker">OPERACIÃ“N COMERCIAL</span>
             <h2>Nueva venta</h2>
             <p>
               Selecciona al cliente y agrega los productos de su compra.
@@ -727,7 +727,7 @@ export default function Ventas() {
               {clientes.map((cliente) => (
                 <option key={cliente.id} value={cliente.id}>
                   {cliente.nombre}
-                  {cliente.documento ? ` — ${cliente.documento}` : ""}
+                  {cliente.documento ? ` â€” ${cliente.documento}` : ""}
                 </option>
               ))}
             </select>
@@ -750,7 +750,7 @@ export default function Ventas() {
                     value={producto.id}
                     disabled={producto.stock <= 0}
                   >
-                    {producto.nombre} — {dinero(producto.precio)} — Stock:{" "}
+                    {producto.nombre} â€” {dinero(producto.precio)} â€” Stock:{" "}
                     {producto.stock}
                   </option>
                 ))}
@@ -803,7 +803,7 @@ export default function Ventas() {
                 <th>Precio unitario</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
-                <th>Acción</th>
+                <th>AcciÃ³n</th>
               </tr>
             </thead>
 
@@ -814,7 +814,7 @@ export default function Ventas() {
                     <div className="ventas-vacio-icono">
                       <Icono tipo="carrito" />
                     </div>
-                    <strong>Tu carrito está vacío</strong>
+                    <strong>Tu carrito estÃ¡ vacÃ­o</strong>
                     <span>
                       Selecciona un producto arriba para comenzar.
                     </span>
@@ -897,15 +897,15 @@ export default function Ventas() {
             }
           >
             {guardando ? "Registrando venta..." : "Registrar venta"}
-            {!guardando && <span>→</span>}
+            {!guardando && <span>â†’</span>}
           </button>
         </div>
 
         <div className="ventas-nota">
           <span className="ventas-nota-icono">i</span>
           <p>
-            La venta se registrará como pendiente de pago. Al confirmarla,
-            el sistema actualizará el stock y guardará los movimientos de
+            La venta se registrarÃ¡ como pendiente de pago. Al confirmarla,
+            el sistema actualizarÃ¡ el stock y guardarÃ¡ los movimientos de
             inventario.
           </p>
         </div>
@@ -914,7 +914,7 @@ export default function Ventas() {
       <section className="ventas-analitica">
         <div className="ventas-analitica-encabezado">
           <div>
-            <span className="ventas-kicker">VISIÓN COMERCIAL</span>
+            <span className="ventas-kicker">VISIÃ“N COMERCIAL</span>
             <h2>Resumen de rendimiento</h2>
             <p>
               Indicadores calculados a partir de las ventas registradas.
@@ -930,8 +930,8 @@ export default function Ventas() {
           <article className="ventas-grafico-card ventas-grafico-mensual">
             <div className="ventas-grafico-titulo">
               <div>
-                <h3>Evolución de ventas</h3>
-                <p>Importe registrado en los últimos seis meses</p>
+                <h3>EvoluciÃ³n de ventas</h3>
+                <p>Importe registrado en los Ãºltimos seis meses</p>
               </div>
 
               <span className="ventas-grafico-etiqueta">Mensual</span>
@@ -940,9 +940,9 @@ export default function Ventas() {
             {ventasNoAnuladas.length === 0 ? (
               <div className="ventas-grafico-vacio">
                 <Icono tipo="grafico" />
-                <strong>Aún no hay datos para analizar</strong>
+                <strong>AÃºn no hay datos para analizar</strong>
                 <span>
-                  Los resultados aparecerán cuando existan ventas
+                  Los resultados aparecerÃ¡n cuando existan ventas
                   registradas.
                 </span>
               </div>
@@ -965,7 +965,7 @@ export default function Ventas() {
                               notation: "compact",
                               maximumFractionDigits: 1,
                             }).format(mes.total)
-                          : "—"}
+                          : "â€”"}
                       </span>
 
                       <div className="ventas-barra-fondo">
@@ -1022,7 +1022,7 @@ export default function Ventas() {
             <div className="ventas-grafico-titulo">
               <div>
                 <h3>Estado de cobros</h3>
-                <p>Distribución de operaciones no anuladas</p>
+                <p>DistribuciÃ³n de operaciones no anuladas</p>
               </div>
             </div>
 
@@ -1030,7 +1030,7 @@ export default function Ventas() {
               <div className="ventas-grafico-vacio ventas-grafico-vacio-corto">
                 <Icono tipo="pendiente" />
                 <strong>Sin operaciones para comparar</strong>
-                <span>El resumen se actualizará con tus ventas.</span>
+                <span>El resumen se actualizarÃ¡ con tus ventas.</span>
               </div>
             ) : (
               <>
@@ -1079,7 +1079,7 @@ export default function Ventas() {
             <div>
               <span className="ventas-kicker">REGISTRO COMERCIAL</span>
               <h2>Historial de ventas</h2>
-              <p>Consulta las cinco ventas más recientes.</p>
+              <p>Consulta las cinco ventas mÃ¡s recientes.</p>
             </div>
           </div>
 
@@ -1094,12 +1094,12 @@ export default function Ventas() {
 
         <div className="ventas-filtros">
           <label className="ventas-busqueda-contenedor">
-            <span className="ventas-busqueda-icono">⌕</span>
+            <span className="ventas-busqueda-icono">âŒ•</span>
 
             <input
               className="ventas-busqueda"
               type="search"
-              placeholder="Buscar por número, cliente o estado..."
+              placeholder="Buscar por nÃºmero, cliente o estado..."
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
             />
@@ -1124,9 +1124,9 @@ export default function Ventas() {
           <table className="ventas-tabla ventas-tabla-historial">
             <thead>
               <tr>
-                <th>N.º</th>
+                <th>N.Âº</th>
                 <th>Cliente</th>
-                <th>Fecha de operación</th>
+                <th>Fecha de operaciÃ³n</th>
                 <th>Productos</th>
                 <th>Total</th>
                 <th>Estado</th>
@@ -1137,7 +1137,7 @@ export default function Ventas() {
               {cargando ? (
                 <tr>
                   <td colSpan={6} className="ventas-vacio">
-                    Cargando información...
+                    Cargando informaciÃ³n...
                   </td>
                 </tr>
               ) : ventasPaginadas.length === 0 ? (
@@ -1148,7 +1148,7 @@ export default function Ventas() {
                     </div>
                     <strong>No se encontraron ventas</strong>
                     <span>
-                      Prueba con otra búsqueda o cambia el filtro.
+                      Prueba con otra bÃºsqueda o cambia el filtro.
                     </span>
                   </td>
                 </tr>

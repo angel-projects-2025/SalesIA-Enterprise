@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+﻿import { useCallback, useEffect, useMemo, useState } from "react";
 import "./Analytics.css";
 
-const API = "http://127.0.0.1:8000/api";
+const API = "https://salesia-enterprise-api.vercel.app/api";
 
 interface DetalleVenta {
   id: number;
@@ -191,7 +191,7 @@ export default function Analytics() {
       setError(
         err instanceof Error
           ? err.message
-          : "Ocurrió un error al cargar Analytics.",
+          : "OcurriÃ³ un error al cargar Analytics.",
       );
     } finally {
       setCargando(false);
@@ -210,7 +210,7 @@ export default function Analytics() {
 
       if (!respuesta.ok) {
         throw new Error(
-          `El análisis respondió con el código ${respuesta.status}.`,
+          `El anÃ¡lisis respondiÃ³ con el cÃ³digo ${respuesta.status}.`,
         );
       }
 
@@ -220,7 +220,7 @@ export default function Analytics() {
       setErrorIA(
         err instanceof Error
           ? err.message
-          : "No se pudo obtener el análisis de ventas.",
+          : "No se pudo obtener el anÃ¡lisis de ventas.",
       );
     } finally {
       setActualizandoIA(false);
@@ -239,7 +239,7 @@ export default function Analytics() {
 
       if (!respuesta.ok) {
         throw new Error(
-          `La predicción respondió con el código ${respuesta.status}.`,
+          `La predicciÃ³n respondiÃ³ con el cÃ³digo ${respuesta.status}.`,
         );
       }
 
@@ -249,7 +249,7 @@ export default function Analytics() {
       setErrorPrediccion(
         err instanceof Error
           ? err.message
-          : "No se pudo consultar la predicción de ventas.",
+          : "No se pudo consultar la predicciÃ³n de ventas.",
       );
     } finally {
       setCargandoPrediccion(false);
@@ -444,13 +444,13 @@ export default function Analytics() {
           </span>
           <h1>Analytics</h1>
           <p>
-            Analiza las ventas, interpreta los resultados estadísticos y
+            Analiza las ventas, interpreta los resultados estadÃ­sticos y
             conoce mejor el rendimiento de tu negocio.
           </p>
         </div>
 
         <div className="analytics-filter">
-          <label htmlFor="analytics-periodo">Periodo de análisis</label>
+          <label htmlFor="analytics-periodo">Periodo de anÃ¡lisis</label>
           <select
             id="analytics-periodo"
             value={periodo}
@@ -458,8 +458,8 @@ export default function Analytics() {
               setPeriodo(evento.target.value as Periodo)
             }
           >
-            <option value="7">Últimos 7 días</option>
-            <option value="30">Últimos 30 días</option>
+            <option value="7">Ãšltimos 7 dÃ­as</option>
+            <option value="30">Ãšltimos 30 dÃ­as</option>
             <option value="todos">Todo el historial</option>
           </select>
         </div>
@@ -489,10 +489,10 @@ export default function Analytics() {
         <article className="analytics-kpi">
           <div className="analytics-kpi-top">
             <span>Ventas registradas</span>
-            <span className="analytics-icon purple">↗</span>
+            <span className="analytics-icon purple">â†—</span>
           </div>
           <strong>{resumen.cantidad}</strong>
-          <small>Ventas válidas del periodo</small>
+          <small>Ventas vÃ¡lidas del periodo</small>
         </article>
 
         <article className="analytics-kpi">
@@ -507,10 +507,10 @@ export default function Analytics() {
         <article className="analytics-kpi">
           <div className="analytics-kpi-top">
             <span>Ticket promedio</span>
-            <span className="analytics-icon green">∑</span>
+            <span className="analytics-icon green">âˆ‘</span>
           </div>
           <strong>{moneda(resumen.promedio)}</strong>
-          <small>Promedio por venta válida</small>
+          <small>Promedio por venta vÃ¡lida</small>
         </article>
 
         <article className="analytics-kpi">
@@ -528,7 +528,7 @@ export default function Analytics() {
           <div className="analytics-card-heading">
             <div>
               <h2>Comportamiento de ventas</h2>
-              <p>Importe total agrupado por día.</p>
+              <p>Importe total agrupado por dÃ­a.</p>
             </div>
             <span className="analytics-chart-legend">
               <span /> Importe en S/
@@ -555,7 +555,7 @@ export default function Analytics() {
                           3,
                         )}%`,
                       }}
-                      title={`${moneda(dato.total)} · ${dato.cantidad} ventas`}
+                      title={`${moneda(dato.total)} Â· ${dato.cantidad} ventas`}
                     />
                   </div>
                   <span className="analytics-bar-label">
@@ -567,7 +567,7 @@ export default function Analytics() {
           )}
 
           <div className="analytics-chart-footer">
-            <span>{grafico.length} días con ventas</span>
+            <span>{grafico.length} dÃ­as con ventas</span>
             <span>{resumen.cantidad} operaciones analizadas</span>
           </div>
         </article>
@@ -575,17 +575,17 @@ export default function Analytics() {
         <article className="analytics-card">
           <div className="analytics-card-heading">
             <div>
-              <h2>Indicadores estadísticos</h2>
+              <h2>Indicadores estadÃ­sticos</h2>
               <p>Medidas calculadas sobre los importes de las ventas.</p>
             </div>
           </div>
 
           {[
-            ["Media aritmética", "Promedio de los importes", moneda(resumen.promedio)],
+            ["Media aritmÃ©tica", "Promedio de los importes", moneda(resumen.promedio)],
             ["Mediana", "Valor central de las ventas", moneda(resumen.mediana)],
-            ["Venta mínima", "Menor importe válido", moneda(resumen.minimo)],
-            ["Venta máxima", "Mayor importe válido", moneda(resumen.maximo)],
-            ["Ventas pagadas", "Proporción observada", `${resumen.porcentajePagadas.toFixed(1)}%`],
+            ["Venta mÃ­nima", "Menor importe vÃ¡lido", moneda(resumen.minimo)],
+            ["Venta mÃ¡xima", "Mayor importe vÃ¡lido", moneda(resumen.maximo)],
+            ["Ventas pagadas", "ProporciÃ³n observada", `${resumen.porcentajePagadas.toFixed(1)}%`],
           ].map(([titulo, descripcion, valor]) => (
             <div className="analytics-stat-row" key={titulo}>
               <div>
@@ -614,7 +614,7 @@ export default function Analytics() {
 
           {tendenciaMensual.length === 0 ? (
             <div className="analytics-empty">
-              Todavía no hay ventas para mostrar por mes.
+              TodavÃ­a no hay ventas para mostrar por mes.
             </div>
           ) : (
             <div className="analytics-month-list">
@@ -632,21 +632,21 @@ export default function Analytics() {
 
           <div className="analytics-stat-note">
             La tendencia mensual muestra el historial completo del backend;
-            el filtro superior afecta los indicadores y el gráfico diario.
+            el filtro superior afecta los indicadores y el grÃ¡fico diario.
           </div>
         </article>
 
         <article className="analytics-card">
           <div className="analytics-card-heading">
             <div>
-              <h2>Productos más vendidos</h2>
+              <h2>Productos mÃ¡s vendidos</h2>
               <p>Ordenados por unidades registradas en las ventas.</p>
             </div>
           </div>
 
           {productos.length === 0 ? (
             <div className="analytics-empty">
-              Todavía no hay detalles de ventas para analizar.
+              TodavÃ­a no hay detalles de ventas para analizar.
             </div>
           ) : (
             <div className="analytics-products">
@@ -682,9 +682,9 @@ export default function Analytics() {
         <div className="analytics-card-heading">
           <div>
             <h2>Insights del negocio</h2>
-            <p>Observaciones basadas en los resultados estadísticos.</p>
+            <p>Observaciones basadas en los resultados estadÃ­sticos.</p>
           </div>
-          <span className="analytics-insight-symbol">✦</span>
+          <span className="analytics-insight-symbol">âœ¦</span>
         </div>
 
         {resumen.cantidad === 0 ? (
@@ -699,7 +699,7 @@ export default function Analytics() {
                 <strong>Importe promedio</strong>
                 <p>
                   El importe promedio es <b>{moneda(resumen.promedio)}</b>,
-                  calculado a partir de {resumen.cantidad} ventas válidas.
+                  calculado a partir de {resumen.cantidad} ventas vÃ¡lidas.
                 </p>
               </div>
             </div>
@@ -707,13 +707,13 @@ export default function Analytics() {
             <div className="analytics-insight">
               <span className="analytics-insight-dot green-dot" />
               <div>
-                <strong>Distribución de importes</strong>
+                <strong>DistribuciÃ³n de importes</strong>
                 <p>
                   La mediana es <b>{moneda(resumen.mediana)}</b>.
                   {resumen.promedio > resumen.mediana
-                    ? " El promedio supera la mediana, lo que puede indicar que las ventas de importe elevado lo están aumentando."
+                    ? " El promedio supera la mediana, lo que puede indicar que las ventas de importe elevado lo estÃ¡n aumentando."
                     : resumen.promedio < resumen.mediana
-                      ? " El promedio está por debajo de la mediana, lo que puede indicar que algunos importes bajos lo reducen."
+                      ? " El promedio estÃ¡ por debajo de la mediana, lo que puede indicar que algunos importes bajos lo reducen."
                       : " La media y la mediana coinciden en este periodo."}
                 </p>
               </div>
@@ -746,9 +746,9 @@ export default function Analytics() {
               <div className="analytics-insight">
                 <span className="analytics-insight-dot blue-dot" />
                 <div>
-                  <strong>Día con mayor importe</strong>
+                  <strong>DÃ­a con mayor importe</strong>
                   <p>
-                    El día {fechaCorta(`${mejorDia.fecha}T12:00:00`)} registró{" "}
+                    El dÃ­a {fechaCorta(`${mejorDia.fecha}T12:00:00`)} registrÃ³{" "}
                     <b>{moneda(mejorDia.total)}</b> en ventas.
                   </p>
                 </div>
@@ -763,9 +763,9 @@ export default function Analytics() {
         <div className="analytics-card-heading">
           <div>
             <span className="analytics-eyebrow">SALESIA INTELLIGENCE</span>
-            <h2>✦ Análisis de ventas con IA</h2>
+            <h2>âœ¦ AnÃ¡lisis de ventas con IA</h2>
             <p>
-              Análisis estadístico calculado en el backend a partir de las
+              AnÃ¡lisis estadÃ­stico calculado en el backend a partir de las
               ventas almacenadas en PostgreSQL.
             </p>
           </div>
@@ -775,13 +775,13 @@ export default function Analytics() {
             onClick={() => void cargarAnalisisIA()}
             disabled={actualizandoIA}
           >
-            {actualizandoIA ? "Analizando..." : "↻ Actualizar análisis"}
+            {actualizandoIA ? "Analizando..." : "â†» Actualizar anÃ¡lisis"}
           </button>
         </div>
 
         {errorIA && (
           <div className="analytics-error" role="alert">
-            <strong>No se pudo obtener el análisis de ventas.</strong>
+            <strong>No se pudo obtener el anÃ¡lisis de ventas.</strong>
             <p>{errorIA}</p>
             <button onClick={() => void cargarAnalisisIA()}>Reintentar</button>
           </div>
@@ -789,7 +789,7 @@ export default function Analytics() {
 
         {!analisisIA && !errorIA && (
           <div className="analytics-empty">
-            {actualizandoIA ? "Analizando las ventas..." : "Todavía no hay un análisis disponible."}
+            {actualizandoIA ? "Analizando las ventas..." : "TodavÃ­a no hay un anÃ¡lisis disponible."}
           </div>
         )}
 
@@ -797,11 +797,11 @@ export default function Analytics() {
           <>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", marginBottom: 20 }}>
               <span style={{ padding: "7px 12px", borderRadius: 20, background: "#e0f7ed", color: "#087f5b", fontSize: 13, fontWeight: 700 }}>
-                ● Análisis {analisisIA.estado === "ok" ? "completado" : analisisIA.estado}
+                â— AnÃ¡lisis {analisisIA.estado === "ok" ? "completado" : analisisIA.estado}
               </span>
 
               <span style={{ padding: "7px 12px", borderRadius: 20, background: analisisIA.prediccion_disponible ? "#e0f2fe" : "#fff0d9", color: analisisIA.prediccion_disponible ? "#075985" : "#92400e", fontSize: 13, fontWeight: 700 }}>
-                {analisisIA.prediccion_disponible ? "Predicción disponible" : "Predicción no disponible"}
+                {analisisIA.prediccion_disponible ? "PredicciÃ³n disponible" : "PredicciÃ³n no disponible"}
               </span>
             </div>
 
@@ -809,15 +809,15 @@ export default function Analytics() {
 
             <div className="analytics-kpis">
               <article className="analytics-kpi">
-                <div className="analytics-kpi-top"><span>Ventas analizadas</span><span className="analytics-icon purple">✦</span></div>
+                <div className="analytics-kpi-top"><span>Ventas analizadas</span><span className="analytics-icon purple">âœ¦</span></div>
                 <strong>{analisisIA.total_ventas}</strong>
-                <small>Ventas incluidas en el análisis</small>
+                <small>Ventas incluidas en el anÃ¡lisis</small>
               </article>
 
               <article className="analytics-kpi">
                 <div className="analytics-kpi-top"><span>Monto analizado</span><span className="analytics-icon blue">S/</span></div>
                 <strong>{moneda(analisisIA.monto_total)}</strong>
-                <small>Importe de ventas válidas</small>
+                <small>Importe de ventas vÃ¡lidas</small>
               </article>
 
               <article className="analytics-kpi">
@@ -836,18 +836,18 @@ export default function Analytics() {
             <div style={{ marginTop: 28 }}>
               <div className="analytics-card-heading">
                 <div>
-                  <h2>Medidas estadísticas</h2>
-                  <p>Medidas de tendencia central y dispersión de los importes.</p>
+                  <h2>Medidas estadÃ­sticas</h2>
+                  <p>Medidas de tendencia central y dispersiÃ³n de los importes.</p>
                 </div>
               </div>
 
               <div className="analytics-main-grid">
                 <div className="analytics-card">
                   {[
-                    ["Media aritmética", "Promedio de las ventas", moneda(analisisIA.media_ventas)],
+                    ["Media aritmÃ©tica", "Promedio de las ventas", moneda(analisisIA.media_ventas)],
                     ["Mediana", "Valor central de los importes", moneda(analisisIA.mediana_ventas)],
-                    ["Valor mínimo", "Venta de menor importe", moneda(analisisIA.venta_minima)],
-                    ["Valor máximo", "Venta de mayor importe", moneda(analisisIA.venta_maxima)],
+                    ["Valor mÃ­nimo", "Venta de menor importe", moneda(analisisIA.venta_minima)],
+                    ["Valor mÃ¡ximo", "Venta de mayor importe", moneda(analisisIA.venta_maxima)],
                   ].map(([titulo, descripcion, valor]) => (
                     <div className="analytics-stat-row" key={titulo}>
                       <div><span>{titulo}</span><small>{descripcion}</small></div>
@@ -858,22 +858,22 @@ export default function Analytics() {
 
                 <div className="analytics-card">
                   <div className="analytics-stat-row">
-                    <div><span>Esperanza matemática</span><small>Valor esperado de una venta</small></div>
+                    <div><span>Esperanza matemÃ¡tica</span><small>Valor esperado de una venta</small></div>
                     <strong>{moneda(variableAleatoria?.esperanza_matematica ?? analisisIA.media_ventas)}</strong>
                   </div>
 
                   <div className="analytics-stat-row">
-                    <div><span>Varianza poblacional</span><small>Dispersión de los importes al cuadrado</small></div>
+                    <div><span>Varianza poblacional</span><small>DispersiÃ³n de los importes al cuadrado</small></div>
                     <strong>{numero(variableAleatoria?.varianza ?? analisisIA.varianza_poblacional).toLocaleString("es-PE", { maximumFractionDigits: 2 })}</strong>
                   </div>
 
                   <div className="analytics-stat-row">
-                    <div><span>Desviación estándar</span><small>Dispersión respecto a la media</small></div>
+                    <div><span>DesviaciÃ³n estÃ¡ndar</span><small>DispersiÃ³n respecto a la media</small></div>
                     <strong>{moneda(variableAleatoria?.desviacion_estandar ?? analisisIA.desviacion_estandar_poblacional ?? 0)}</strong>
                   </div>
 
                   <div className="analytics-stat-note">
-                    Una desviación estándar alta indica que los importes de las ventas están más dispersos alrededor de la media.
+                    Una desviaciÃ³n estÃ¡ndar alta indica que los importes de las ventas estÃ¡n mÃ¡s dispersos alrededor de la media.
                   </div>
                 </div>
               </div>
@@ -890,25 +890,25 @@ export default function Analytics() {
               {probabilidades ? (
                 <div className="analytics-kpis">
                   <article className="analytics-kpi">
-                    <div className="analytics-kpi-top"><span>Probabilidad de pago</span><span className="analytics-icon green">✓</span></div>
+                    <div className="analytics-kpi-top"><span>Probabilidad de pago</span><span className="analytics-icon green">âœ“</span></div>
                     <strong>{porcentaje(probabilidades.venta_pagada)}</strong>
-                    <small>Proporción de ventas que están pagadas</small>
+                    <small>ProporciÃ³n de ventas que estÃ¡n pagadas</small>
                   </article>
 
                   <article className="analytics-kpi">
                     <div className="analytics-kpi-top"><span>Probabilidad de pendiente</span><span className="analytics-icon orange">!</span></div>
                     <strong>{porcentaje(probabilidades.venta_pendiente)}</strong>
-                    <small>Proporción de ventas pendientes</small>
+                    <small>ProporciÃ³n de ventas pendientes</small>
                   </article>
 
                   <article className="analytics-kpi">
-                    <div className="analytics-kpi-top"><span>Probabilidad de importe alto</span><span className="analytics-icon purple">↗</span></div>
+                    <div className="analytics-kpi-top"><span>Probabilidad de importe alto</span><span className="analytics-icon purple">â†—</span></div>
                     <strong>{porcentaje(probabilidades.importe_alto)}</strong>
                     <small>Ventas iguales o superiores a la mediana</small>
                   </article>
                 </div>
               ) : (
-                <div className="analytics-empty">El backend todavía no devuelve los datos de probabilidades.</div>
+                <div className="analytics-empty">El backend todavÃ­a no devuelve los datos de probabilidades.</div>
               )}
 
               <div className="analytics-stat-note" style={{ marginTop: 16 }}>
@@ -920,14 +920,14 @@ export default function Analytics() {
               <div className="analytics-card-heading">
                 <div>
                   <h2>Teorema de Bayes</h2>
-                  <p>Análisis de la relación entre los importes altos y el estado de pago.</p>
+                  <p>AnÃ¡lisis de la relaciÃ³n entre los importes altos y el estado de pago.</p>
                 </div>
               </div>
 
               {bayes ? (
                 <div className="analytics-card">
                   <div className="analytics-stat-note">
-                    <strong>Definición utilizada</strong>
+                    <strong>DefiniciÃ³n utilizada</strong>
                     <p style={{ marginTop: 8 }}>{bayes.definicion}</p>
                   </div>
 
@@ -939,27 +939,27 @@ export default function Analytics() {
                     </div>
 
                     <div className="analytics-card">
-                      <span style={{ color: "#64748b", fontSize: 13 }}>Probabilidad de importe alto dado que está pagada</span>
+                      <span style={{ color: "#64748b", fontSize: 13 }}>Probabilidad de importe alto dado que estÃ¡ pagada</span>
                       <h2 style={{ marginTop: 10 }}>{porcentaje(bayes.probabilidad_importe_alto_dado_pagada)}</h2>
                       <p style={{ fontSize: 13, color: "#64748b" }}>P(Importe alto | Pagada)</p>
                     </div>
                   </div>
 
                   <div className="analytics-stat-note" style={{ marginTop: 18 }}>
-                    <strong>Interpretación de los resultados</strong>
+                    <strong>InterpretaciÃ³n de los resultados</strong>
                     <p style={{ marginTop: 8 }}>{bayes.interpretacion}</p>
                   </div>
                 </div>
               ) : (
-                <div className="analytics-empty">El backend todavía no devuelve el análisis de Bayes.</div>
+                <div className="analytics-empty">El backend todavÃ­a no devuelve el anÃ¡lisis de Bayes.</div>
               )}
             </div>
 
             <div style={{ marginTop: 28 }}>
               <div className="analytics-card-heading">
                 <div>
-                  <h2>Recomendaciones del análisis</h2>
-                  <p>Sugerencias generadas por el backend según los datos actuales.</p>
+                  <h2>Recomendaciones del anÃ¡lisis</h2>
+                  <p>Sugerencias generadas por el backend segÃºn los datos actuales.</p>
                 </div>
               </div>
 
@@ -970,7 +970,7 @@ export default function Analytics() {
                   {analisisIA.recomendaciones.map((recomendacion, indice) => (
                     <div className="analytics-insight" key={indice}>
                       <span className="analytics-insight-dot purple-dot" />
-                      <div><strong>Recomendación {indice + 1}</strong><p>{recomendacion}</p></div>
+                      <div><strong>RecomendaciÃ³n {indice + 1}</strong><p>{recomendacion}</p></div>
                     </div>
                   ))}
                 </div>
@@ -993,7 +993,7 @@ export default function Analytics() {
             )}
 
             <p style={{ marginTop: 22, fontSize: 12, color: "#64748b" }}>
-              Último análisis: {new Date(analisisIA.fecha_analisis).toLocaleString("es-PE")}
+              Ãšltimo anÃ¡lisis: {new Date(analisisIA.fecha_analisis).toLocaleString("es-PE")}
             </p>
           </>
         )}
@@ -1004,9 +1004,9 @@ export default function Analytics() {
         <div className="analytics-card-heading">
           <div>
             <span className="analytics-eyebrow">SALESIA PREDICTIVE</span>
-            <h2>Predicción de ventas</h2>
+            <h2>PredicciÃ³n de ventas</h2>
             <p>
-              Estimación de ingresos futuros mediante regresión lineal de
+              EstimaciÃ³n de ingresos futuros mediante regresiÃ³n lineal de
               scikit-learn.
             </p>
           </div>
@@ -1016,13 +1016,13 @@ export default function Analytics() {
             onClick={() => void cargarPrediccion()}
             disabled={cargandoPrediccion}
           >
-            {cargandoPrediccion ? "Calculando..." : "↻ Actualizar predicción"}
+            {cargandoPrediccion ? "Calculando..." : "â†» Actualizar predicciÃ³n"}
           </button>
         </div>
 
         {errorPrediccion && (
           <div className="analytics-error" role="alert">
-            <strong>No se pudo obtener la predicción.</strong>
+            <strong>No se pudo obtener la predicciÃ³n.</strong>
             <p>{errorPrediccion}</p>
             <button onClick={() => void cargarPrediccion()}>Reintentar</button>
           </div>
@@ -1032,7 +1032,7 @@ export default function Analytics() {
           <div className="analytics-empty">
             {cargandoPrediccion
               ? "Consultando el modelo predictivo..."
-              : "Todavía no hay resultados disponibles."}
+              : "TodavÃ­a no hay resultados disponibles."}
           </div>
         )}
 
@@ -1041,8 +1041,8 @@ export default function Analytics() {
             <div className="analytics-kpis">
               <article className="analytics-kpi">
                 <div className="analytics-kpi-top">
-                  <span>Meses históricos</span>
-                  <span className="analytics-icon purple">◷</span>
+                  <span>Meses histÃ³ricos</span>
+                  <span className="analytics-icon purple">â—·</span>
                 </div>
                 <strong>{prediccion.meses_historicos}</strong>
                 <small>Meses con ventas registradas</small>
@@ -1050,17 +1050,17 @@ export default function Analytics() {
 
               <article className="analytics-kpi">
                 <div className="analytics-kpi-top">
-                  <span>Ventas históricas</span>
-                  <span className="analytics-icon blue">↗</span>
+                  <span>Ventas histÃ³ricas</span>
+                  <span className="analytics-icon blue">â†—</span>
                 </div>
                 <strong>{prediccion.total_ventas_historicas}</strong>
-                <small>Ventas válidas analizadas</small>
+                <small>Ventas vÃ¡lidas analizadas</small>
               </article>
 
               <article className="analytics-kpi">
                 <div className="analytics-kpi-top">
                   <span>Error medio absoluto</span>
-                  <span className="analytics-icon orange">±</span>
+                  <span className="analytics-icon orange">Â±</span>
                 </div>
                 <strong>
                   {prediccion.error_medio_absoluto === null
@@ -1069,8 +1069,8 @@ export default function Analytics() {
                 </strong>
                 <small>
                   {prediccion.evaluacion_disponible
-                    ? "Evaluación de los últimos dos meses"
-                    : "Aún no se puede evaluar el modelo"}
+                    ? "EvaluaciÃ³n de los Ãºltimos dos meses"
+                    : "AÃºn no se puede evaluar el modelo"}
                 </small>
               </article>
             </div>
@@ -1111,10 +1111,10 @@ export default function Analytics() {
               </div>
             ) : (
               <div className="analytics-stat-note" style={{ marginTop: 16 }}>
-                <strong>¿Qué falta para generar predicciones?</strong>
+                <strong>Â¿QuÃ© falta para generar predicciones?</strong>
                 <p style={{ marginTop: 8 }}>
                   El modelo requiere al menos seis meses con ventas registradas
-                  y un mínimo de treinta ventas válidas.
+                  y un mÃ­nimo de treinta ventas vÃ¡lidas.
                 </p>
 
                 {prediccion.requisitos && (
@@ -1162,12 +1162,12 @@ export default function Analytics() {
             <div className="analytics-stat-note" style={{ marginTop: 16 }}>
               Las predicciones son estimaciones, no ingresos garantizados. El
               error medio absoluto mide la diferencia promedio entre los
-              ingresos observados y los estimados durante la evaluación.
+              ingresos observados y los estimados durante la evaluaciÃ³n.
             </div>
 
             {prediccion.fecha_analisis && (
               <p style={{ marginTop: 14, fontSize: 12, color: "#64748b" }}>
-                Fecha del cálculo:{" "}
+                Fecha del cÃ¡lculo:{" "}
                 {new Date(prediccion.fecha_analisis).toLocaleString("es-PE")}
               </p>
             )}
@@ -1176,9 +1176,9 @@ export default function Analytics() {
       </section>
 
       <footer className="analytics-footer">
-        <span>SalesIA Enterprise · Módulo Analytics e IA</span>
+        <span>SalesIA Enterprise Â· MÃ³dulo Analytics e IA</span>
         <span>
-          Backend conectado · {analyticsAPI?.total_ventas ?? 0} ventas en el sistema
+          Backend conectado Â· {analyticsAPI?.total_ventas ?? 0} ventas en el sistema
         </span>
       </footer>
     </main>
