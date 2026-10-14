@@ -29,12 +29,16 @@ password_hash = PasswordHash.recommended()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        # Frontend local
         "http://localhost:5173",
         "http://localhost:5174",
         "http://localhost:5175",
         "http://127.0.0.1:5173",
         "http://127.0.0.1:5174",
         "http://127.0.0.1:5175",
+
+        # Frontend desplegado en Vercel
+        "https://sales-ia-enterprise-kappa.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
